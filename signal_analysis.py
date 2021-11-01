@@ -89,7 +89,6 @@ plt.xlabel('Time (ms)')
 plt.ylabel('Amplitude')
 plt.plot(normalized_accel)
 
-
 # calc FFT
         # normalize FFT and * 2 to get same magnitude as time domain
 y_mag = (rfft(normalized_accel)/number_of_samples)*2
