@@ -88,7 +88,7 @@ plt.title('Time vs Amplitude, Normalized')
 plt.xlabel('Time (ms)')
 plt.ylabel('Amplitude')
 plt.plot(normalized_accel)
-
+# git testing more more
 
 # calc FFT
         # normalize FFT and * 2 to get same magnitude as time domain
