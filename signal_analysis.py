@@ -10,13 +10,13 @@ def read_values():
     """
 
     # grab number of samples (sample size) from data
-    number_of_samples = data['sampleSize']
+    sampleSize = data['sampleSize']
     # grab period ( sampling interval) from data
-    period = data['samplingInterval']
+    samplingInterval = data['samplingInterval']
     # grab accel values
-    accelSignal = (data['values'])
+    values = (data['values'])
 
-    return number_of_samples, period, accelSignal
+    return sampleSize, samplingInterval, values
 
 
 # cannot REUSE NAME!!!!!
