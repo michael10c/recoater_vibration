@@ -1,18 +1,14 @@
-
 import numpy as np
-import matplotlib.pyplot as plt
-import scipy.linalg as la
-import math
 import json
-import scipy.signal
-import sys
-
 from matplotlib import pyplot as plt
 # rfft: only real side
-from scipy.fft import fft, fftfreq, rfft, rfftfreq
+from scipy.fft import rfft, rfftfreq
 
 
 def read_values():
+    """ read_values() returns data from json file
+    """
+
     # grab number of samples (sample size) from data
     number_of_samples = data['sampleSize']
     # grab period ( sampling interval) from data
@@ -23,17 +19,19 @@ def read_values():
     return number_of_samples, period, accelSignal
 
 
+# cannot REUSE NAME!!!!!
 
-### Reading force data
-#   On BBB
+# Reading force data
+# On BBB
 # accelFilepath = '/home/debian/frfRawData/force.txt'
 # accelFilepath = '/var/lib/node-red/frfRawData/force.txt'
 
-# assign path to varialbe
-accelFilepath='C:\\Users\\Michael\\OneDrive - Georgia Institute of Technology\\recoater blade masters\\code\\test_data\\accel2.txt'
+# assign path to variable
+accelFilepath = 'C:\\Users\\Michael\\OneDrive - Georgia Institute of Technology' \
+                '\\recoater blade masters\\code\\test_data\\accel2.txt'
 
-# start list
-accelSignal = []
+# start list, do I need this?
+# accelSignal = []
 
 # open file above and load the json object into data variable
 with open(accelFilepath) as f:
@@ -64,22 +62,19 @@ max_accel = array_accel.max()
 # accelSignal_center = [i - (max_accel/2) for i in accelSignal]
 
 for i in range(0, len(array_accel), 1):
-    accel_centered[i] = (array_accel[i] - (max_accel/2))*1.8/4095
+    accel_centered[i] = (array_accel[i] - (max_accel / 2)) * 1.8 / 4095
 
 # normalize signal
 normalized_accel = (accel_centered / accel_centered.max())
 
 # RMS of signal
-rms = np.sqrt(np.mean(normalized_accel**2))
-#print(normalized_accel)
-#print(accelSignal_center)
+rms = np.sqrt(np.mean(normalized_accel ** 2))
+# print(normalized_accel)
+# print(accelSignal_center)
 print("RMS = ", rms)
 
-
-
-
-#time = []
-#for i in range(0, len(accelSignal), 1):
+# time = []
+# for i in range(0, len(accelSignal), 1):
 #    time.append(i * period)
 
 # time domain
@@ -90,8 +85,8 @@ plt.ylabel('Amplitude')
 plt.plot(normalized_accel)
 
 # calc FFT
-        # normalize FFT and * 2 to get same magnitude as time domain
-y_mag = (rfft(normalized_accel)/number_of_samples)*2
+# normalize FFT and * 2 to get same magnitude as time domain
+y_mag = (rfft(normalized_accel) / number_of_samples) * 2
 x_freq = rfftfreq(number_of_samples, period)
 
 # freq domains
@@ -109,7 +104,8 @@ jsonFile = {
 }
 
 # On laptop
-saveDataFilepath = 'C:\\Users\\Michael\\OneDrive - Georgia Institute of Technology\\recoater blade masters\\code\\test_data\\fft.txt'
+saveDataFilepath = 'C:\\Users\\Michael\\OneDrive - Georgia Institute of Technology' \
+                   '\\recoater blade masters\\code\\test_data\\fft.txt'
 
 # On BBB
 # saveDataFilepath = '/var/lib/node-red/frfRawData/frf.txt'
