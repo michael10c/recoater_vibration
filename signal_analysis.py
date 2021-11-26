@@ -98,6 +98,12 @@ plt.ylabel('Magnitude')
 plt.plot(x_freq, np.abs(y_mag))
 plt.show()
 
+
+#  Convert output to list for creating json file
+x_freq = list(x_freq)
+y_mag = list(y_mag)
+
+
 # Define output file
 jsonFile = {
     "frequency": x_freq,
