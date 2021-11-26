@@ -106,7 +106,9 @@ jsonFile = {
 
 # On laptop
 #saveDataFilepath = 'C:\\Users\\Michael\\OneDrive - Georgia Institute of Technology' \
-                   '\\recoater blade masters\\code\\test_data\\fft.txt'
+#                   '\\recoater blade masters\\code\\test_data\\fft.txt'
+
+# push
 
 # On BBB
 # saveDataFilepath = '/var/lib/node-red/frfRawData/frf.txt'
