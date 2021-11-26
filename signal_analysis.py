@@ -29,7 +29,7 @@ accelFilepath = '/home/debian/recoater_vibration/data/testing_code/z_axis.txt'
 
 # assign path to variable
 #accelFilepath = 'C:\\Users\\Michael\\OneDrive - Georgia Institute of Technology' \
-                '\\recoater blade masters\\code\\test_data\\accel2.txt'
+#                '\\recoater blade masters\\code\\test_data\\accel2.txt'
 
 # start list, do I need this?
 # accelSignal = []
