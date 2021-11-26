@@ -2,7 +2,8 @@ import numpy as np
 import json
 from matplotlib import pyplot as plt
 # rfft: only real side
-from scipy.fft import rfft, rfftfreq
+#from scipy.fft import rfft, rfftfreq
+from scipy.fftpack import rfft, rfftfreq
 
 
 def read_values():
