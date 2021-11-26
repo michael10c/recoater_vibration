@@ -24,11 +24,11 @@ def read_values():
 
 # Reading force data
 # On BBB
-# accelFilepath = '/home/debian/frfRawData/force.txt'
+accelFilepath = '/home/debian/recoater_vibration/data/testing_code/z_axis.txt'
 # accelFilepath = '/var/lib/node-red/frfRawData/force.txt'
 
 # assign path to variable
-accelFilepath = 'C:\\Users\\Michael\\OneDrive - Georgia Institute of Technology' \
+#accelFilepath = 'C:\\Users\\Michael\\OneDrive - Georgia Institute of Technology' \
                 '\\recoater blade masters\\code\\test_data\\accel2.txt'
 
 # start list, do I need this?
@@ -105,11 +105,12 @@ jsonFile = {
 }
 
 # On laptop
-saveDataFilepath = 'C:\\Users\\Michael\\OneDrive - Georgia Institute of Technology' \
+#saveDataFilepath = 'C:\\Users\\Michael\\OneDrive - Georgia Institute of Technology' \
                    '\\recoater blade masters\\code\\test_data\\fft.txt'
 
 # On BBB
 # saveDataFilepath = '/var/lib/node-red/frfRawData/frf.txt'
+saveDataFilepath = '/home/debian/recoater_vibration/data/testing_code/z_axis_fft.txt'
 
 
 f = open(saveDataFilepath, "w")
