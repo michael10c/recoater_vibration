@@ -45,12 +45,12 @@ int main(int argc, char **argv)
 
   do {
     //Set-up the AIN-1 channel
-    if (pruio_adc_setStep(io, 10, 1, 0, 0, 0)){ //          step 10, AIN-1
+    if (pruio_adc_setStep(io, 10, 0, 0, 0, 0)){ //          step 10, AIN-0
         printf("step 10 configuration failed: (%s)\n", io->Errr);break;}
     time_t end3 = time(NULL);
     printf("The elapsed time for AIN1 channel setup is %d seconds\n", (end3 - end2));
     //Set-up the AIN-2 channel
-    if (pruio_adc_setStep(io,11, 2, 0, 0, 0)){ //         step 11, AIN-2
+    if (pruio_adc_setStep(io,11, 1, 0, 0, 0)){ //         step 11, AIN-1
        printf("step 11 configuration failed: (%s)\n", io->Errr); break;}
     time_t end4 = time(NULL);
     printf("The elapsed time for AIN2 channel setup is %d seconds\n", (end4 - end3));
