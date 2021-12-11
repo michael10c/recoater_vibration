@@ -24,7 +24,7 @@ def read_values():
 
 # Reading force data
 # On BBB
-accelFilepath = '/home/debian/recoater_vibration/data/testing_code/250Hz_sine.txt'
+accelFilepath = '/home/debian/recoater_vibration/data/testing_code/x_axis.txt'
 # accelFilepath = '/var/lib/node-red/frfRawData/force.txt'
 
 # assign path to variable
