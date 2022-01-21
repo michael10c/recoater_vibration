@@ -22,20 +22,19 @@ def read_values():
 
 # cannot REUSE NAME!!!!!
 
-# Reading force data
+# Reading data, assign path to variable
 # On BBB
-accelFilepath = '/home/debian/recoater_vibration/data/testing_code/x_axis.txt'
-# accelFilepath = '/var/lib/node-red/frfRawData/force.txt'
+#accelFilePath = '/home/debian/recoater_vibration/data/testing_code/x_axis.txt'
+# accelFilePath = '/var/lib/node-red/frfRawData/force.txt'
 
-# assign path to variable
-#accelFilepath = 'C:\\Users\\Michael\\OneDrive - Georgia Institute of Technology' \
-#                '\\recoater blade masters\\code\\test_data\\accel2.txt'
+# on PC
+accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\x_axis.txt"
 
 # start list, do I need this?
 # accelSignal = []
 
 # open file above and load the json object into data variable
-with open(accelFilepath) as f:
+with open(accelFilePath) as f:
     data = json.load(f)
 
 # obtain values from file above and save into variables
@@ -57,13 +56,18 @@ accel_centered = np.zeros([len(array_accel)])
 
 # find the max point in data of accel, used to center the freq
 max_accel = array_accel.max()
+min_accel = array_accel.min()
+range_accel = max_accel - min_accel
+mid_accel = range_accel / 2
+
+
 
 # center the signal to prevent the spike at zero
 # need to remove if whole signal is not a sin wave
 # accelSignal_center = [i - (max_accel/2) for i in accelSignal]
 
 for i in range(0, len(array_accel), 1):
-    accel_centered[i] = (array_accel[i] - (max_accel / 2)) * 1.8 / 4095
+    accel_centered[i] = (array_accel[i] - (array_accel.mean()))
 
 # normalize signal
 normalized_accel = (accel_centered / accel_centered.max())
@@ -79,8 +83,20 @@ print("RMS = ", rms)
 #    time.append(i * period)
 
 # time domain
-plot1 = plt.figure("Time Domain")
-plt.title('Time vs Amplitude, Normalized')
+plot1 = plt.figure("Time Domain1")
+plt.title('Time vs Amplitude')
+plt.xlabel('Time (ms)')
+plt.ylabel('Amplitude')
+plt.plot(array_accel)
+
+plot2 = plt.figure("Time Domain2")
+plt.title('Time vs Amplitude, centered')
+plt.xlabel('Time (ms)')
+plt.ylabel('Amplitude')
+plt.plot(accel_centered)
+
+plot3 = plt.figure("Time Domain3")
+plt.title('Time vs Amplitude, Normalized and Centered')
 plt.xlabel('Time (ms)')
 plt.ylabel('Amplitude')
 plt.plot(normalized_accel)
@@ -91,7 +107,7 @@ y_mag = (rfft(normalized_accel) / number_of_samples) * 2
 x_freq = rfftfreq(number_of_samples, period)
 
 # freq domains
-plot2 = plt.figure("Frequency Domain")
+plot4 = plt.figure("Frequency Domain")
 plt.title('Frequency vs Magnitude, Normalized')
 plt.xlabel('Frequency (Hz)')
 plt.ylabel('Magnitude')
@@ -111,14 +127,13 @@ jsonFile = {
 }
 
 # On laptop
-#saveDataFilepath = 'C:\\Users\\Michael\\OneDrive - Georgia Institute of Technology' \
-#                   '\\recoater blade masters\\code\\test_data\\fft.txt'
+saveDataFilepath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\x_axis_fft.txt"
 
 # push
 
 # On BBB
 # saveDataFilepath = '/var/lib/node-red/frfRawData/frf.txt'
-saveDataFilepath = '/home/debian/recoater_vibration/data/testing_code/z_axis_fft.txt'
+#saveDataFilepath = '/home/debian/recoater_vibration/data/testing_code/z_axis_fft.txt'
 
 
 f = open(saveDataFilepath, "w")

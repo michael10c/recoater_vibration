@@ -37,6 +37,9 @@ on_disc = std(x_power_on_relay_disc)
 % not the relay connection!!
 % wires to stage power
 
+size(negative_x)
+size(negative_y)
+
 
 
 
