@@ -82,24 +82,32 @@ print("RMS = ", rms)
 # for i in range(0, len(accelSignal), 1):
 #    time.append(i * period)
 
+my_fig = plt.figure(figsize=(10.0, 4.0))
+time = my_fig.add_subplot(2, 2, 1)
+time_c = my_fig.add_subplot(2, 2, 2)
+time_cn = my_fig.add_subplot(2, 2, 3)
+freq = my_fig.add_subplot(2, 2, 4)
+
+
+
 # time domain
-plot1 = plt.figure("Time Domain1")
-plt.title('Time vs Amplitude')
-plt.xlabel('Time (ms)')
-plt.ylabel('Amplitude')
-plt.plot(array_accel)
+# plot1 = plt.figure("Time Domain1")
+time.set_title('Time vs Amplitude')
+time.set_xlabel('Time (ms)')
+time.set_ylabel('Amplitude')
+time.plot(array_accel)
 
-plot2 = plt.figure("Time Domain2")
-plt.title('Time vs Amplitude, centered')
-plt.xlabel('Time (ms)')
-plt.ylabel('Amplitude')
-plt.plot(accel_centered)
+# plot2 = plt.figure("Time Domain2")
+time_c.set_title('Time vs Amplitude, centered')
+time_c.set_xlabel('Time (ms)')
+time_c.set_ylabel('Amplitude')
+time_c.plot(accel_centered)
 
-plot3 = plt.figure("Time Domain3")
-plt.title('Time vs Amplitude, Normalized and Centered')
-plt.xlabel('Time (ms)')
-plt.ylabel('Amplitude')
-plt.plot(normalized_accel)
+# plot3 = plt.figure("Time Domain3")
+time_cn.set_title('Time vs Amplitude, Normalized and Centered')
+time_cn.set_xlabel('Time (ms)')
+time_cn.set_ylabel('Amplitude')
+time_cn.plot(normalized_accel)
 
 # calc FFT
 # normalize FFT and * 2 to get same magnitude as time domain
@@ -107,11 +115,11 @@ y_mag = (rfft(normalized_accel) / number_of_samples) * 2
 x_freq = rfftfreq(number_of_samples, period)
 
 # freq domains
-plot4 = plt.figure("Frequency Domain")
-plt.title('Frequency vs Magnitude, Normalized')
-plt.xlabel('Frequency (Hz)')
-plt.ylabel('Magnitude')
-plt.plot(x_freq, np.abs(y_mag))
+# plot4 = plt.figure("Frequency Domain")
+freq.set_title('Frequency vs Magnitude, Normalized')
+freq.set_xlabel('Frequency (Hz)')
+freq.set_ylabel('Magnitude')
+freq.plot(x_freq, np.abs(y_mag))
 plt.show()
 
 
