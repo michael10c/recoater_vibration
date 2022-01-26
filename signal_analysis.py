@@ -187,7 +187,7 @@ y_mag = list(y_mag)
 jsonFile = {
     "frequency": x_freq,
     "magnitude": y_mag,
-    "Standard Deviation": std_dev
+    "standardDeviation": std_dev
 }
 
 # On laptop
