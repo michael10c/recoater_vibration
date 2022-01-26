@@ -87,6 +87,10 @@ range_accel = max_accel - min_accel
 mid_accel = range_accel / 2
 mean_accel = array_accel.mean(axis=1)
 
+# traditional statistics
+std_dev = np.std(array_accel, axis=1)
+print("Std Dev.", std_dev)
+
 
 # center the signal to prevent the spike at zero
 # need to remove if whole signal is not a sin wave
