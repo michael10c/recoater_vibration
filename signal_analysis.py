@@ -24,12 +24,12 @@ def read_values():
 
 # Reading data, assign path to variable
 # On BBB
-#accelFilePath = '/home/debian/recoater_vibration/data/testing_code/x_axis.txt'
+accelFilePath = '/home/debian/recoater_vibration/data/testing_code/x_axis.txt'
 # accelFilePath = '/var/lib/node-red/frfRawData/force.txt'
 
 ## X axis
 # on PC
-accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\x_axis.txt"
+# accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\x_axis.txt"
 
 # start list, do I need this?
 # accelSignal = []
@@ -54,7 +54,10 @@ array_accel_x = np.array(accelSignal)
 
 ## Y axis
 # on PC
-accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\y_axis.txt"
+# accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\y_axis.txt"
+
+# on BBB
+accelFilePath = '/home/debian/recoater_vibration/data/testing_code/y_axis.txt'
 
 # open file above and load the json object into data variable
 with open(accelFilePath) as f:
@@ -183,17 +186,18 @@ y_mag = list(y_mag)
 # Define output file
 jsonFile = {
     "frequency": x_freq,
-    "magnitude": y_mag
+    "magnitude": y_mag,
+    "Standard Deviation": std_dev
 }
 
 # On laptop
-saveDataFilepath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\x_axis_fft.txt"
+# saveDataFilepath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\x_axis_fft.txt"
 
 # push
 
 # On BBB
 # saveDataFilepath = '/var/lib/node-red/frfRawData/frf.txt'
-#saveDataFilepath = '/home/debian/recoater_vibration/data/testing_code/z_axis_fft.txt'
+saveDataFilepath = '/home/debian/recoater_vibration/data/testing_code/processed_accel.txt'
 
 
 f = open(saveDataFilepath, "w")
