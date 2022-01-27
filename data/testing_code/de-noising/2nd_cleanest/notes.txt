@@ -1,0 +1,9 @@
+use these data points as a reference. this is the second cleanest signal I have so far.
+BBB out of box, power to box on, all aux devices connected, running on sp7 battery with charger unplugged both ends
+Sampling Frequency:  4096.0  Hz
+Number of Samples:  8192  Samples
+Sampling Frequency:  4096.0  Hz
+Number of Samples:  8192  Samples
+Std Dev. [0.08923525 0.11779879]
+RMS =  0.1368155566196288
+Hello from Windows
