@@ -4,6 +4,7 @@ from matplotlib import pyplot as plt
 # rfft: only real side
 #from scipy.fft import rfft, rfftfreq
 from scipy.fftpack import rfft, rfftfreq
+import datetime
 
 
 def read_values():
@@ -204,7 +205,8 @@ f = open(saveDataFilepath, "w")
 f.write(str(jsonFile))
 f.close()
 
-print("Hello from Windows")
+print("Hello from BBB")
+print("Timestamp: ", datetime.datetime.now())
 
 
 

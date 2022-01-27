@@ -1,0 +1,10 @@
+use these data points as a reference. 
+BBB out of box, power to box on, all aux devices connected, running on sp7 battery with charger unplugged both ends, arm mounted, moving in +x direction at 2000 mm/min slightly above the device home position, usb stage plugged in
+
+Sampling Frequency:  4096.0  Hz
+Number of Samples:  8192  Samples
+Sampling Frequency:  4096.0  Hz
+Number of Samples:  8192  Samples
+Std Dev. [1.03550459 1.09199753]
+RMS =  0.0807388778901728
+Hello from Windows
