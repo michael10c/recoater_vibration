@@ -1,0 +1,11 @@
+use these data points as a reference. 
+BBB out of box, power to box on, all aux devices connected, sp7 charging, arm mounted, usb to stage plugged in, isolated, using relay to ground BBB to arm, wire to analog ground
+
+Sampling Frequency:  4096.0  Hz
+Number of Samples:  8192  Samples
+Sampling Frequency:  4096.0  Hz
+Number of Samples:  8192  Samples
+Std Dev. [1.14273551 1.08198514]
+RMS =  0.06069648615484323
+Hello from BBB
+Timestamp:  2022-01-28 19:36:11.950419
