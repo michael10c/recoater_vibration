@@ -159,28 +159,27 @@ plt.title('Frequency vs Magnitude, Normalized')
 plt.xlabel('Frequency (Hz)')
 plt.ylabel('Magnitude')
 plt.plot(frequency_FFT, np.abs(magnitude_FFT[1]))
-plt.show()
+# plt.show()
 
 #  Convert output to list for creating json file
 frequency_FFT = frequency_FFT.tolist()
 x_axis_magnitude = np.abs(magnitude_FFT).tolist()[0]
 y_axis_magnitude = np.abs(magnitude_FFT).tolist()[1]
 
-print("Type: ", type(y_axis_magnitude))
-
 # Define output file
 jsonFile = {
     "frequency_FFT": frequency_FFT,
     "x_axis_magnitude": x_axis_magnitude,
-    "y_axis_magnitude": y_axis_magnitude,
-    "standardDeviation": std_dev
+    "y_axis_magnitude": y_axis_magnitude
 }
 
 # On BBB
 saveDataFilepath = '/home/debian/recoater_vibration/data/testing_code/processed_accel.txt'
+saveFigurePath = '/home/debian/recoater_vibration/data/testing_code/x_axis_FFT.png'
 # On laptop
 # saveDataFilepath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\x_axis_fft.txt"
 
+plt.savefig(saveFigurePath)
 f = open(saveDataFilepath, "w")
 f.write(str(jsonFile))
 f.close()
