@@ -8,8 +8,7 @@ import datetime
 
 
 def read_values():
-    """ read_values() returns data from json file
-    """
+    #  read_values() returns data from json file
 
     # grab number of samples (sample size) from data
     sampleSize = data['sampleSize']
@@ -180,14 +179,16 @@ plt.show()
 
 
 #  Convert output to list for creating json file
-x_freq = list(x_freq)
-y_mag = list(y_mag)
+x_freq = list(x_freq[])
+
+x_axis_magnitude = y_mag.tolist()
+y_mag = list(y_mag[])
 
 
 # Define output file
 jsonFile = {
     "frequency": x_freq,
-    "magnitude": y_mag,
+    "magnitude": x_axis_magnitude,
     "standardDeviation": std_dev
 }
 

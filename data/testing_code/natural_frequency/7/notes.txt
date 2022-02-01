@@ -1,0 +1,4 @@
+hit lightly from -x to +X
+targeting x axis
+hit frame free end 
+hit with ratchet 

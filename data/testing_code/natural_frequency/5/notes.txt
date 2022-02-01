@@ -1,0 +1,3 @@
+hit lightly from +x to -x
+targeting x axis
+hit at blade base middle

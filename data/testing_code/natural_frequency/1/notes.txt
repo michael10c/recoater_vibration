@@ -1,0 +1,2 @@
+hit lightly from +z to -z 
+targeting y axis
