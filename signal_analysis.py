@@ -163,12 +163,14 @@ plt.show()
 
 #  Convert output to list for creating json file
 frequency_FFT = frequency_FFT.tolist()
-x_axis_magnitude = np.abs(magnitude_FFT.tolist()[0])
-y_axis_magnitude = np.abs(magnitude_FFT.tolist()[1])
+x_axis_magnitude = np.abs(magnitude_FFT).tolist()[0]
+y_axis_magnitude = np.abs(magnitude_FFT).tolist()[1]
+
+print("Type: ", type(y_axis_magnitude))
 
 # Define output file
 jsonFile = {
-    "frequency": frequency_FFT,
+    "frequency_FFT": frequency_FFT,
     "x_axis_magnitude": x_axis_magnitude,
     "y_axis_magnitude": y_axis_magnitude,
     "standardDeviation": std_dev
