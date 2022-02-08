@@ -149,12 +149,15 @@ print("Minimum acceleration: ", min_accel, "m/s^2")
 print("Frequency of maximum magnitude: ", frequency_FFT[np.argmax(magnitude_FFT, axis=1)], "Hz")
 
 # freq domains
-plot7 = plt.figure("Frequency Domain 7")
+plot7 = plt.figure("Frequency Domain X-axis")
 plt.title('Frequency vs Magnitude, Normalized')
 plt.xlabel('Frequency (Hz)')
 plt.ylabel('Magnitude')
 plt.plot(frequency_FFT, np.abs(magnitude_FFT[0]))
-plot8 = plt.figure("Frequency Domain 8")
+saveFigurePath_x = '/home/debian/recoater_vibration/data/testing_code/x_axis_FFT.png'
+plt.savefig(saveFigurePath_x)
+
+plot8 = plt.figure("Frequency Domain Y-Axis")
 plt.title('Frequency vs Magnitude, Normalized')
 plt.xlabel('Frequency (Hz)')
 plt.ylabel('Magnitude')
@@ -175,11 +178,11 @@ jsonFile = {
 
 # On BBB
 saveDataFilepath = '/home/debian/recoater_vibration/data/testing_code/processed_accel.txt'
-saveFigurePath = '/home/debian/recoater_vibration/data/testing_code/x_axis_FFT.png'
+saveFigurePath_y = '/home/debian/recoater_vibration/data/testing_code/y_axis_FFT.png'
 # On laptop
 # saveDataFilepath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\x_axis_fft.txt"
 
-plt.savefig(saveFigurePath)
+plt.savefig(saveFigurePath_y)
 f = open(saveDataFilepath, "w")
 f.write(str(jsonFile))
 f.close()
