@@ -4,6 +4,7 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
+        "node-red-contrib-counter": "~0.1.6",
         "node-red-contrib-debounce": "0.0.2"
     }
 }
