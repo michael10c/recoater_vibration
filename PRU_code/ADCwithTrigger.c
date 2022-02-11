@@ -22,7 +22,7 @@ int main (int argc, char **argv){
     return 1;
   }
   printf("pruio constructor\n");
-  //do{
+  do{
     //Set-up GPIO on P8_07
     //if (pruio_gpio_config(io, PIN, MODE)){
     //  printf("GPIO configuration failed: (%s)\n", io->Errr);
@@ -58,7 +58,7 @@ int main (int argc, char **argv){
     printf("pruio config\n");
     
     //Set-up GPIO trigger
-    uint32 trg = pruio_adc_mm_trg_pin(io, PIN, 0, 0); //! 3rd input is value to check (1=HI, 0=LO), 4th input is delay number
+    uint32 trg = pruio_adc_mm_trg_pin(io, PIN, 1, 0); //! 3rd input is value to check (1=HI, 0=LO), 4th input is delay number
     if (trg == 0){
       printf("trigger config failed: (%s)\n", io->Errr);
       break;
