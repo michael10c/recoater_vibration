@@ -22,13 +22,13 @@ int main (int argc, char **argv){
     return 1;
   }
   printf("pruio constructor\n");
-  do{
+  //do{
     //Set-up GPIO on P8_07
-    if (pruio_gpio_config(io, PIN, MODE)){
-      printf("GPIO configuration failed: (%s)\n", io->Errr);
-      break;
-    }
-    printf("gpio config\n");
+    //if (pruio_gpio_config(io, PIN, MODE)){
+    //  printf("GPIO configuration failed: (%s)\n", io->Errr);
+    //  break;
+    //}
+    //printf("gpio config\n");
     //Set-up the AIN-1 channel
     if (pruio_adc_setStep(io, 10, 0, 0, 0, 0)){
       printf("step10 configuration failed: (%s)\n", io->Errr);
