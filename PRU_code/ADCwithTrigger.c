@@ -30,12 +30,12 @@ int main (int argc, char **argv){
     }
     printf("gpio config\n");
     //Set-up the AIN-1 channel
-    if (pruio_adc_setStep(io, 10, 1, 0, 0, 0)){
+    if (pruio_adc_setStep(io, 10, 0, 0, 0, 0)){
       printf("step10 configuration failed: (%s)\n", io->Errr);
       break;
     }
     //Set-up the AIN-2 channel
-    if (pruio_adc_setStep(io, 11, 2, 0, 0, 0)){
+    if (pruio_adc_setStep(io, 11, 1, 0, 0, 0)){
       printf("step 11 configuration failed: (%s)\n", io->Errr);
       break;
     }
