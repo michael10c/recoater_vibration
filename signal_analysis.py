@@ -5,6 +5,7 @@ from scipy.fftpack import rfft, rfftfreq
 import datetime
 
 
+
 def read_values():
     # read_values() returns data from json file
     # grab number of samples (sample size) from data
