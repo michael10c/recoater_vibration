@@ -29,9 +29,9 @@ def read_file():
 # Reading data, assign path to variable
 # X axis ############
 # On BBB
-# accelFilePath = '/home/debian/recoater_vibration/data/testing_code/x_axis.txt'
+accelFilePath = '/home/debian/recoater_vibration/data/testing_code/x_axis.txt'
 # on PC
-accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\z_axis.txt"
+# accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\z_axis.txt"
 
 data = read_file()
 
@@ -51,9 +51,9 @@ array_accel_x = np.array(accelSignal)
 
 # Y axis##########################
 # on PC
-accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\z_axis.txt"
+# accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\z_axis.txt"
 # on BBB
-# accelFilePath = '/home/debian/recoater_vibration/data/testing_code/y_axis.txt'
+accelFilePath = '/home/debian/recoater_vibration/data/testing_code/y_axis.txt'
 
 # open file above and load the json object into data variable
 data = read_file()
