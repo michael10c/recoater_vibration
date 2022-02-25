@@ -30,9 +30,9 @@ def read_file():
 # Reading data, assign path to variable
 # X axis ############
 # On BBB
-# accelFilePath = '/home/debian/recoater_vibration/data/testing_code/x_axis.txt'
+accelFilePath = '/home/debian/recoater_vibration/data/testing_code/x_axis.txt'
 # on PC
-accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\cube\\trial_1\\45\\x_axis.txt"
+# accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\cube\\trial_1\\45\\x_axis.txt"
 
 data = read_file()
 
@@ -52,9 +52,9 @@ array_accel_x = np.array(accelSignal)
 
 # Y axis##########################
 # on PC
-accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\cube\\trial_1\\45\\y_axis.txt"
+# accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\cube\\trial_1\\45\\y_axis.txt"
 # on BBB
-# accelFilePath = '/home/debian/recoater_vibration/data/testing_code/y_axis.txt'
+accelFilePath = '/home/debian/recoater_vibration/data/testing_code/y_axis.txt'
 
 # open file above and load the json object into data variable
 data = read_file()
@@ -99,11 +99,11 @@ for i in range(len(array_accel)):
 
 
 # axis, index, values
-noisy = accel_centered[0]
+noisy = accel_centered[1]
 x = (range(len(noisy)))
 fs = sampling_frequency
 T = (1/fs) * len(noisy)
-cutoff = 400
+cutoff = 500
 
 nyq = 0.5 * fs
 # no large impact since not interested in precise freq
@@ -128,19 +128,19 @@ plt.subplot(2, 1, 2)
 plt.plot(x, y, 'g-', linewidth=0.5, label='filtered data')
 # plt.show()
 
-save = "C:\\Users\\Michael\\Desktop\\temp\\x-axis_filtered.png"
-# saveFigurePath_x = '/home/debian/recoater_vibration/data/testing_code/x_axis_filtered.png'
-plt.savefig(save)
+# save = "C:\\Users\\Michael\\Desktop\\temp\\x-axis_filtered.png"
+saveFigurePath_x = '/home/debian/recoater_vibration/data/testing_code/x_axis_filtered.png'
+plt.savefig(saveFigurePath_x)
 
-max_accel_centered = np.amax(y)
+max_accel = np.amax(y)
 
 # normalize signal
-for i in range(len(array_accel)):
-    norm_center[i] = (accel_centered[i] / max_accel_centered[i])
+#for i in range(len(array_accel)):
+#    norm_center[i] = (accel_centered[i] / max_accel_centered[i])
 
 # RMS of signal
-rms = np.sqrt(np.mean((norm_center ** 2), axis=1))
-print("RMS = ", rms)
+#rms = np.sqrt(np.mean((norm_center ** 2), axis=1))
+#print("RMS = ", rms)
 
 # # time domain
 # plot1 = plt.figure("Time Domain X Axis")
@@ -182,7 +182,7 @@ print("RMS = ", rms)
 # frequency_FFT = rfftfreq(number_of_samples, period)
 
 print("Maximum acceleration: ", max_accel, "m/s^2")
-print("Minimum acceleration: ", min_accel, "m/s^2")
+#print("Minimum acceleration: ", min_accel, "m/s^2")
 # print("Frequency of maximum magnitude: ", frequency_FFT[np.argmax(magnitude_FFT, axis=1)], "Hz")
 
 # # freq domains
