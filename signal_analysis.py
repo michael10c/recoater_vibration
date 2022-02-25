@@ -99,7 +99,7 @@ for i in range(len(array_accel)):
 
 
 # axis, index, values
-noisy = accel_centered[1]
+noisy = accel_centered[0]
 x = (range(len(noisy)))
 fs = sampling_frequency
 T = (1/fs) * len(noisy)
@@ -132,7 +132,7 @@ save = "C:\\Users\\Michael\\Desktop\\temp\\x-axis_filtered.png"
 # saveFigurePath_x = '/home/debian/recoater_vibration/data/testing_code/x_axis_filtered.png'
 plt.savefig(save)
 
-max_accel_centered = np.amax(accel_centered, axis=1)
+max_accel_centered = np.amax(y)
 
 # normalize signal
 for i in range(len(array_accel)):
