@@ -1,7 +1,8 @@
 import numpy as np
 import json
 from matplotlib import pyplot as plt
-from scipy.fftpack import rfft, rfftfreq
+# from scipy.fftpack import rfft, rfftfreq
+from scipy.signal import butter, filtfilt
 import datetime
 
 
@@ -29,9 +30,9 @@ def read_file():
 # Reading data, assign path to variable
 # X axis ############
 # On BBB
-accelFilePath = '/home/debian/recoater_vibration/data/testing_code/x_axis.txt'
+# accelFilePath = '/home/debian/recoater_vibration/data/testing_code/x_axis.txt'
 # on PC
-# accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\z_axis.txt"
+accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\cube\\trial_1\\45\\x_axis.txt"
 
 data = read_file()
 
@@ -51,9 +52,9 @@ array_accel_x = np.array(accelSignal)
 
 # Y axis##########################
 # on PC
-# accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\z_axis.txt"
+accelFilePath = "C:\\Users\\Michael\\Documents\\master\\data\\cube\\trial_1\\45\\y_axis.txt"
 # on BBB
-accelFilePath = '/home/debian/recoater_vibration/data/testing_code/y_axis.txt'
+# accelFilePath = '/home/debian/recoater_vibration/data/testing_code/y_axis.txt'
 
 # open file above and load the json object into data variable
 data = read_file()
@@ -95,6 +96,41 @@ print("Std Dev.", std_dev)
 # accelSignal_center = [i - (max_accel/2) for i in accelSignal]
 for i in range(len(array_accel)):
     accel_centered[i] = (array_accel[i] - mean_accel[i])
+
+
+# axis, index, values
+noisy = accel_centered[1]
+x = (range(len(noisy)))
+fs = sampling_frequency
+T = (1/fs) * len(noisy)
+cutoff = 400
+
+nyq = 0.5 * fs
+# no large impact since not interested in precise freq
+order = 2
+n = int(T * fs)
+
+def butter_lowpass_filter(noisy, cutoff, fs, order):
+    normal_cutoff = cutoff / nyq
+    # Get the filter coefficients 
+    # analog = false to work at all
+    b, a = butter(order, normal_cutoff, btype='low')
+    y = filtfilt(b, a, noisy)
+    return y
+
+
+y = butter_lowpass_filter(noisy, cutoff, fs, order)
+
+# plot1 = plt.figure("X-axis_filtered")
+plt.subplot(2, 1, 1)
+plt.plot(x, noisy, 'b-', linewidth=0.5, label='non-filtered data')
+plt.subplot(2, 1, 2)
+plt.plot(x, y, 'g-', linewidth=0.5, label='filtered data')
+# plt.show()
+
+save = "C:\\Users\\Michael\\Desktop\\temp\\x-axis_filtered.png"
+# saveFigurePath_x = '/home/debian/recoater_vibration/data/testing_code/x_axis_filtered.png'
+plt.savefig(save)
 
 max_accel_centered = np.amax(accel_centered, axis=1)
 
@@ -142,51 +178,53 @@ print("RMS = ", rms)
 
 # calc FFT
 # normalize FFT and * 2 to get same magnitude as time domain
-magnitude_FFT = (rfft(norm_center) / number_of_samples) * 2
-frequency_FFT = rfftfreq(number_of_samples, period)
+# magnitude_FFT = (rfft(norm_center) / number_of_samples) * 2
+# frequency_FFT = rfftfreq(number_of_samples, period)
 
 print("Maximum acceleration: ", max_accel, "m/s^2")
 print("Minimum acceleration: ", min_accel, "m/s^2")
-print("Frequency of maximum magnitude: ", frequency_FFT[np.argmax(magnitude_FFT, axis=1)], "Hz")
+# print("Frequency of maximum magnitude: ", frequency_FFT[np.argmax(magnitude_FFT, axis=1)], "Hz")
 
-# freq domains
-plot7 = plt.figure("Frequency Domain X-axis")
-plt.title('Frequency vs Magnitude, Normalized')
-plt.xlabel('Frequency (Hz)')
-plt.ylabel('Magnitude')
-plt.plot(frequency_FFT, np.abs(magnitude_FFT[0]))
-saveFigurePath_x = '/home/debian/recoater_vibration/data/testing_code/x_axis_FFT.png'
-plt.savefig(saveFigurePath_x)
+# # freq domains
+# plot7 = plt.figure("Frequency Domain X-axis")
+# plt.title('Frequency vs Magnitude, Normalized')
+# plt.xlabel('Frequency (Hz)')
+# plt.ylabel('Magnitude')
+# plt.plot(frequency_FFT, np.abs(magnitude_FFT[0]))
+# saveFigurePath_x = '/home/debian/recoater_vibration/data/testing_code/x_axis_FFT.png'
+# plt.savefig(saveFigurePath_x)
 
-plot8 = plt.figure("Frequency Domain Y-Axis")
-plt.title('Frequency vs Magnitude, Normalized')
-plt.xlabel('Frequency (Hz)')
-plt.ylabel('Magnitude')
-plt.plot(frequency_FFT, np.abs(magnitude_FFT[1]))
+# plot8 = plt.figure("Frequency Domain Y-Axis")
+# plt.title('Frequency vs Magnitude, Normalized')
+# plt.xlabel('Frequency (Hz)')
+# plt.ylabel('Magnitude')
+# plt.plot(frequency_FFT, np.abs(magnitude_FFT[1]))
 # plt.show()
 
 #  Convert output to list for creating json file
-frequency_FFT = frequency_FFT.tolist()
-x_axis_magnitude = np.abs(magnitude_FFT).tolist()[0]
-y_axis_magnitude = np.abs(magnitude_FFT).tolist()[1]
+# frequency_FFT = frequency_FFT.tolist()
+# x_axis_magnitude = np.abs(magnitude_FFT).tolist()[0]
+# y_axis_magnitude = np.abs(magnitude_FFT).tolist()[1]
 
 # Define output file
-jsonFile = {
-    "frequency_FFT": frequency_FFT,
-    "x_axis_magnitude": x_axis_magnitude,
-    "y_axis_magnitude": y_axis_magnitude
-}
+# jsonFile = {
+#     "frequency_FFT": frequency_FFT,
+#     "x_axis_magnitude": x_axis_magnitude,
+#     "y_axis_magnitude": y_axis_magnitude
+# }
 
 # On BBB
-saveDataFilepath = '/home/debian/recoater_vibration/data/testing_code/processed_accel.txt'
-saveFigurePath_y = '/home/debian/recoater_vibration/data/testing_code/y_axis_FFT.png'
+# saveDataFilepath = '/home/debian/recoater_vibration/data/testing_code/processed_accel.txt'
+# saveFigurePath_y = '/home/debian/recoater_vibration/data/testing_code/y_axis_FFT.png'
 # On laptop
 # saveDataFilepath = "C:\\Users\\Michael\\Documents\\master\\data\\testing_code\\x_axis_fft.txt"
 
-plt.savefig(saveFigurePath_y)
-f = open(saveDataFilepath, "w")
-f.write(str(jsonFile))
-f.close()
+# plt.savefig(saveFigurePath_y)
+
+
+# f = open(saveDataFilepath, "w")
+# f.write(str(jsonFile))
+# f.close()
 
 print("Hello from BBB")
 print("Timestamp: ", datetime.datetime.now())
